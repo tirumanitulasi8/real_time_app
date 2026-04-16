@@ -3,7 +3,6 @@ import json
 import firebase_admin
 from firebase_admin import credentials, db
 
-# Load Firebase key from environment variable
 firebase_key = json.loads(os.environ.get("FIREBASE_KEY"))
 
 cred = credentials.Certificate(firebase_key)
