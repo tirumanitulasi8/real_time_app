@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="dashboard-bg">
+
+<div class="container glass dashboard">
+
+    <h2>👋 Welcome {{username}}</h2>
+
+    <!-- Profile Section -->
+    <div class="profile-section">
+        <img src="/static/uploads/{{profile_pic}}" class="profile-pic">
+        <p>{{bio}}</p>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav">
+        <a class="nav-btn" href="/feed/{{username}}">📸 Feed</a>
+        <a class="nav-btn" href="/upload/{{username}}">➕ Upload</a>
+
+        {% if role == 'admin' %}
+        <a class="nav-btn" href="/users/{{username}}">👥 Users</a>
+        {% endif %}
+
+        <a class="nav-btn" href="/settings/{{username}}">⚙ Settings</a>
+    </div>
+
+    <!-- Logout -->
+    <div style="margin-top:20px;">
+        <a class="logout-btn" href="/">🚪 Logout</a>
+    </div>
+
+</div>
+
+</body>
+</html>

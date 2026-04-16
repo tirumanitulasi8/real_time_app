@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feed</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="feed-bg">
+
+<h2 style="text-align:center;">📸 Feed</h2>
+<a href="/dashboard/{{username}}">⬅ Back</a>
+
+<div id="feed"></div>
+
+<script>
+function loadPosts() {
+    fetch('/get_posts/{{username}}')
+    .then(res => res.json())
+    .then(data => {
+
+        let feed = document.getElementById('feed');
+        feed.innerHTML = "";
+
+        data.reverse().forEach(post => {
+
+            let div = document.createElement("div");
+            div.className = "post";
+
+            div.innerHTML = `
+                <b>${post.username}</b><br><br>
+                ${post.content}
+            `;
+
+            if(post.image){
+                let img = document.createElement("img");
+                img.src = "/static/uploads/" + post.image;
+                div.appendChild(img);
+            }
+
+            // ❤️ LIKE BUTTON
+            let btn = document.createElement("button");
+            btn.innerText = "❤️ " + (post.likes || 0);
+
+            btn.onclick = function() {
+                fetch(`/like/${post.id}`)
+                .then(res => res.json())
+                .then(data => {
+                    btn.innerText = "❤️ " + data.likes;
+                });
+            };
+
+            div.appendChild(document.createElement("br"));
+            div.appendChild(btn);
+
+            feed.appendChild(div);
+        });
+    });
+}
+
+loadPosts();
+setInterval(loadPosts, 3000);
+</script>
+
+</body>
+</html>

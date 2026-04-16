@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Users</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<h2 style="text-align:center;">👥 Admin Panel</h2>
+
+<a href="/dashboard/{{username}}" style="margin-left:20px;">⬅ Back</a>
+
+<hr>
+
+{% for req in requests %}
+    <div class="user-card">
+        <p><b>{{req.username}}</b></p>
+        <p>Status: {{req.status}}</p>
+
+        <a href="/approve/{{req.username}}/{{username}}">
+            <button>Approve</button>
+        </a>
+    </div>
+{% endfor %}
+
+</body>
+</html>
