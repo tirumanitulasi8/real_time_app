@@ -6,17 +6,17 @@
 </head>
 <body class="upload-bg">
 
-<div class="container">
+<div class="upload-container">
 
 <h2>Create Post</h2>
-
-<a href="/dashboard/{{username}}">⬅ Back</a>
 
 <form method="POST" enctype="multipart/form-data">
     <textarea name="content" placeholder="Write something..." required></textarea>
     <input type="file" name="image">
     <button type="submit">Post</button>
 </form>
+
+<a href="/dashboard/{{username}}">⬅ Back</a>
 
 </div>
 
