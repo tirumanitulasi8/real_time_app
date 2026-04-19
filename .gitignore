@@ -5,3 +5,4 @@ __pycache__/
 serviceAccountKey.json
 instance/
 .DS_Store
+static/uploads/
